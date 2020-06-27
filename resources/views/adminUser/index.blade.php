@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>MercaTodo</title>
-        
+        <title>Index</title>
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
@@ -80,15 +80,16 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    MercaTodo
-                </div>
-                <h2>Donde comprar Online es todo un placer!</h2>
-                <div class="links">
-                    <a href="https://www.placetopay.com/web/">PlaceToPay</a>
-                    <a href="https://www.evertecinc.com/">Evertec</a>
-                    <a href="https://fondosumanti.com/">Sumanti</a>
-                    <a href="http://127.0.0.1:8000/admin_users">Usuarios</a>
+                <div class="row">
+                    <h1>Usuarios</h1>
+                    <table class="table">
+                    @foreach($usuarios as $admin_User)
+                        <tr>
+                            <td>{{$admin_User->name}}</td>
+                            <td>{{$admin_User->email}}</td>
+                        </tr>
+                    @endforeach     
+                    </table>
                 </div>
             </div>
         </div>
