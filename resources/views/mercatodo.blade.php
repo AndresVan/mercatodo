@@ -5,6 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>MercaTodo</title>
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
+        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -59,37 +63,57 @@
             }
 
             .m-b-md {
-                margin-bottom: 30px;
+                margin-bottom: 200px;
             }
         </style>
     </head>
     <body>
+         
+            <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
+
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
             <div class="content">
                 <div class="title m-b-md">
                     MercaTodo
+                        <h2>Donde comprar Online es todo un placer!</h2>
                 </div>
-                <h2>Donde comprar Online es todo un placer!</h2>
-                <div class="links">
-                    <a href="https://www.placetopay.com/web/">PlaceToPay</a>
-                    <a href="https://www.evertecinc.com/">Evertec</a>
-                    <a href="https://fondosumanti.com/">Sumanti</a>
-                    <a href="http://127.0.0.1:8000/admin_users">Usuarios</a>
-                </div>
+                    <div class="links">
+                        <a href="https://www.placetopay.com/web/">PlaceToPay</a>
+                        <a href="https://www.evertecinc.com/">Evertec</a>
+                        <a href="https://fondosumanti.com/">Sumanti</a>
+                        <a href="http://127.0.0.1:8000/admin_users">Usuarios</a>
+                    </div><p>
+                <h6>Aliados Patrocinadores</h6></p>
             </div>
         </div>
     </body>
