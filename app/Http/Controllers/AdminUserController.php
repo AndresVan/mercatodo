@@ -38,7 +38,7 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -49,7 +49,10 @@ class AdminUserController extends Controller
      */
     public function show($id)
     {
-        
+        $user = AdminUser::findOrFail($id);
+        return view('/adminUser/show',[
+            'user'=>$user
+        ]);
     }
 
     /**
@@ -60,7 +63,7 @@ class AdminUserController extends Controller
      */
     public function edit($id)
     {
-        $user = AdminUser::find($id);
+        $user = AdminUser::findOrFail($id);
         return view('adminUser.edit' , [
             'user'=> $user
         ]);
@@ -74,8 +77,15 @@ class AdminUserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $user = AdminUser::find($id);
+    {   
+        $validaData = $request->validate([
+            'name' => 'required|min:3',
+            'email' => 'required|min:14'
+        ]);
+
+       
+
+        $user = AdminUser::findOrFail($id);
         $user->name = $request->get('name');
         $user->email = $request->get('email');
     /*     $user->privileges = $request->get('privileges'); */

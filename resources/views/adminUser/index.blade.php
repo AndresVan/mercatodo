@@ -4,18 +4,20 @@
            <div class="content">
                 <div class="row">
                     <h1>Users</h1>
-                    <ul><td><a class="btn btn-dark" href="/">Back</a></td></ul>
+                </div>
+                <div>
+                    <a class="btn btn-dark" href="/">Back</a>
+                </div>
                     <table class="table">
                     @foreach($usuarios as $admin_User)
                         <tr>
                             <td>{{$admin_User->id}}</td>
-                            <td>{{$admin_User->name}}</td>
+                            <td><a href="/admin_users/{{$admin_User->id}}">{{$admin_User->name}}</a></td>
                             <td>{{$admin_User->privileges}}</td>
                             <td>{{$admin_User->email}}</td>
-                            <td><a class="btn btn-primary" href="/admin_users/{{$admin_User->id}}/edit">Edit</a></td>
-                            <td><a class="btn btn-primary" href="/admin_users/create">Create</a></td>
+                            <td><a class="btn btn-warning" href="/admin_users/{{$admin_User->id}}/edit">Edit</a></td>
                             <td><a class="btn btn-primary" href="/admin_users/update">Update</a></td>
-                            <td><a class="btn btn-primary" href="/admin_users/{{$admin_User->id}}/show">Mostrar</a></td>                   
+                            <td><a class="btn btn-danger" href="/admin_users/{{$admin_User->id}}/delete">Delete</a></td>                   
                         </tr>
                     @endforeach     
                     </table>
