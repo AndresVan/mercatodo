@@ -15,7 +15,7 @@ class CreateColumnUsersInAdmin extends Migration
     {
         Schema::table('admin_users', function (Blueprint $table) {
             $table->string('name');
-            $table->string('privileges');
+            $table->boolean('privileges');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
 

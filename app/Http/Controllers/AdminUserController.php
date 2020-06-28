@@ -19,15 +19,15 @@ class AdminUserController extends Controller
             'usuarios'=> AdminUser::all()
         ]);
     }
-
-    /**
+  
+     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('adminUser.create');
     }
 
     /**
@@ -49,7 +49,7 @@ class AdminUserController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -60,7 +60,10 @@ class AdminUserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = AdminUser::find($id);
+        return view('adminUser.edit' , [
+            'user'=> $user
+        ]);
     }
 
     /**
@@ -72,7 +75,13 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = AdminUser::find($id);
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+    /*     $user->privileges = $request->get('privileges'); */
+        $user->save();
+
+        return redirect('/admin_users');
     }
 
     /**
