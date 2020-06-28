@@ -16,8 +16,8 @@
                             <td>{{$admin_User->privileges}}</td>
                             <td>{{$admin_User->email}}</td>
                             <td><a class="btn btn-warning" href="/admin_users/{{$admin_User->id}}/edit">Edit</a></td>
-                            <td><a class="btn btn-primary" href="/admin_users/update">Update</a></td>
-                            <td><a class="btn btn-danger" href="/admin_users/{{$admin_User->id}}/delete">Delete</a></td>                   
+                            <td><a class="btn btn-primary" href="/admin_users/{{$admin_User->id}}/privileges">Enable</a></td>
+                            <td><a class="btn btn-danger" href="/admin_users/{{$admin_User->id}}/confirmDelete">Delete</a></td>                   
                         </tr>
                     @endforeach     
                     </table>

@@ -88,8 +88,6 @@ class AdminUserController extends Controller
             'email' => 'required|min:14'
         ]);
 
-       
-
         $user = AdminUser::findOrFail($id);
         $user->name = $request->get('name');
         $user->email = $request->get('email');
@@ -99,14 +97,33 @@ class AdminUserController extends Controller
         return redirect('/admin_users');
     }
 
-    /**
+     public function confirmDelete($id)
+     {
+        $user = AdminUser::findOrFail($id);
+        return view('adminUser/confirmDelete',[
+            'user' => $user
+        ]);
+     }
+
+/**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
-        //
+        $user = AdminUser::findOrFail($id);
+        $user->delete();
+        return redirect('admin_users');
+    }
+
+    public function privileges($id)
+    {
+        $user = AdminUser::where('privileges',0)->get($id);
+        return view('adminUser/privileges', [
+            'user'=> $user
+        ]);
     }
 }
