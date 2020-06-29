@@ -2,13 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/','HomeController@index');
+Route::get('/','HomeController@index')->middleware('verified');
 
-Route::resource('/admin_users','AdminUserController');
+Route::resource('/admin_users','AdminUserController')->middleware('verified');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes(['verify' => true]);
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 Route::get('/admin_users/{id}/confirmDelete','AdminUserController@confirmDelete');
 

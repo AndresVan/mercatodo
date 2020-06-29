@@ -14,8 +14,8 @@ class CreateColumnTelRolInUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('cedula')->unique();
-            $table->boolean('privileges');
+            $table->integer('cedula')->unique()->nullable();
+            $table->boolean('privileges')->nullable();
         });
     }
 
