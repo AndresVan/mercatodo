@@ -7,8 +7,15 @@
                 </div>
                 <div>
                     <a class="btn btn-sm btn-dark" href="/">Back</a>
-                </div>
+                </div><tr>.</tr>
                     <table class="table">
+                    <tr>
+                    <td><strong>Id</strong></td>
+                    <td><strong>Name</strong></td>
+                    <td><strong>Privileges</strong></td>
+                    <td><strong>Email</strong></td>
+                    <td><strong>Actions</strong></td>
+                    </tr>
                     @foreach($usuarios as $admin_User)
                         <tr>
                             <td>{{$admin_User->id}}</td>
