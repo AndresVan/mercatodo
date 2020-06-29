@@ -3,10 +3,10 @@
 @section('content')
            <div class="content">
                 <div class="row">
-                    <h1>User Id: <!-- {{$user->id}} --></h1>
+                    <h1>User Id: {{$user->id}}</h1>
                 </div>
                 <div>
-                    <a class="btn btn-dark" href="/admin_users">Back</a>
+                    <a class="btn btn-sm btn-dark" href="/admin_users">Back</a>
                 </div>
             <!-- </div>
             <div class="row">

@@ -6,10 +6,10 @@
                     <h1>User Deletion Id: {{$user->id}}</h1>
                 </div>
                 <div>
-                    <a class="btn btn-dark" href="/admin_users">Back</a>
+                    <a class="btn btn-sm btn-dark" href="/admin_users">Back</a>
                 </div><p><br>
                 <div>
-                If you agree, push here: <br><br>
+                If you agree, push here: 
                 <form action="/admin_users/{{$user->id}}" method="POST">
                         @csrf
                         @method('delete')

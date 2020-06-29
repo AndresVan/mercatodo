@@ -121,7 +121,7 @@ class AdminUserController extends Controller
 
     public function privileges($id)
     {
-        $user = AdminUser::where('privileges',0)->get($id);
+        $user = AdminUser::where('privileges','1')->get($id);
         return view('adminUser/privileges', [
             'user'=> $user
         ]);

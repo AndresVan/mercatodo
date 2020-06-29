@@ -6,7 +6,7 @@
                     <h1>User Information Id: {{$user->id}}</h1>
                 </div>
                 <div>
-                    <a class="btn btn-dark" href="/admin_users">Back</a>
+                    <a class="btn btn-sm btn-dark" href="/admin_users">Back</a>
                 </div>
             </div><p>
             <div>

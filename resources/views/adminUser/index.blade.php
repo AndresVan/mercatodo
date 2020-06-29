@@ -6,14 +6,18 @@
                     <h1>Users</h1>
                 </div>
                 <div>
-                    <a class="btn btn-dark" href="/">Back</a>
+                    <a class="btn btn-sm btn-dark" href="/">Back</a>
                 </div>
                     <table class="table">
                     @foreach($usuarios as $admin_User)
                         <tr>
                             <td>{{$admin_User->id}}</td>
                             <td><a href="/admin_users/{{$admin_User->id}}">{{$admin_User->name}}</a></td>
-                            <td>{{$admin_User->privileges}}</td>
+                            @if($admin_User->privileges==1)
+                            <td>Admin</td>
+                            @else
+                            <td>User</td>
+                            @endif
                             <td>{{$admin_User->email}}</td>
                             <td><a class="btn btn-warning" href="/admin_users/{{$admin_User->id}}/edit">Edit</a></td>
                             <td><a class="btn btn-primary" href="/admin_users/{{$admin_User->id}}/privileges">Enable</a></td>

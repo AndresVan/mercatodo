@@ -6,7 +6,7 @@
                     <h1>User Editing Id: {{$user->id}}</h1>
                 </div>
                 <div>
-                    <a class="btn btn-dark" href="/admin_users">Back</a>
+                    <a class="btn btn-sm  btn-dark" href="/admin_users">Back</a>
                 </div>
             </div>
             <div class="row">
@@ -45,7 +45,7 @@
                         ndif
                         </select>
                     </div> -->
-                    <button class="btn btn-dark" type="submit">Edit</button> 
+                    <button class="btn btn-warning" type="submit">Edit</button> 
                    </form>             
                 </div>
             </div>
