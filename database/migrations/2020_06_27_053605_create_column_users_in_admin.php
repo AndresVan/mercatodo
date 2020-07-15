@@ -18,7 +18,6 @@ class CreateColumnUsersInAdmin extends Migration
             $table->boolean('privileges');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-
         });
     }
 
@@ -30,7 +29,7 @@ class CreateColumnUsersInAdmin extends Migration
     public function down()
     {
         Schema::table('admin_users', function (Blueprint $table) {
-           $table->dropColumn('name','privileges','email','email_verified_at');
+            $table->dropColumn('name', 'privileges', 'email', 'email_verified_at');
         });
     }
 }
