@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateColumnTelRolInUsers extends Migration
+class CreatePermissionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateColumnTelRolInUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('cedula')->unique()->nullable();
-            $table->boolean('privileges')->nullable();
+        Schema::create('permission', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre', 50);
+            $table->string('slug', 50);
+            $table->timestamps();
         });
     }
 
@@ -26,8 +28,6 @@ class CreateColumnTelRolInUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('permission');
     }
 }
