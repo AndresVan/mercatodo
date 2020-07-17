@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\AdminUser;
+use Illuminate\View\View;
+use \Illuminate\Http\RedirectResponse;
 
 class AdminUserController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
-
     }
     /**
      * Display a listing of the resource.
@@ -19,17 +20,16 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        /* return AdminUser::all(); */
-        return view('/adminUser/index',[
+        return view('/adminUser/index', [
             'usuarios'=> AdminUser::all()
         ]);
     }
   
-     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /**
+    * Show the form for creating a new resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function create()
     {
         return view('adminUser.create');
@@ -43,7 +43,6 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        
     }
 
     /**
@@ -55,7 +54,8 @@ class AdminUserController extends Controller
     public function show($id)
     {
         $user = AdminUser::findOrFail($id);
-        return view('/adminUser/show',[
+
+        return view('/adminUser/show', [
             'user'=>$user
         ]);
     }
@@ -69,7 +69,8 @@ class AdminUserController extends Controller
     public function edit($id)
     {
         $user = AdminUser::findOrFail($id);
-        return view('adminUser.edit' , [
+
+        return view('adminUser.edit', [
             'user'=> $user
         ]);
     }
@@ -82,35 +83,36 @@ class AdminUserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
+    {
         $validaData = $request->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|min:14'
+            'name' => 'required|min:3|max:50',
+            'email' => 'required|email|max:100'
         ]);
 
         $user = AdminUser::findOrFail($id);
         $user->name = $request->get('name');
         $user->email = $request->get('email');
-    /*     $user->privileges = $request->get('privileges'); */
+    
         $user->save();
 
         return redirect('/admin_users');
     }
 
-     public function confirmDelete($id)
-     {
+    public function confirmDelete(int $id): View
+    {
         $user = AdminUser::findOrFail($id);
-        return view('adminUser/confirmDelete',[
+
+        return view('adminUser/confirmDelete', [
             'user' => $user
         ]);
-     }
+    }
 
-/**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    /**
+         * Remove the specified resource from storage.
+         *
+         * @param  int  $id
+         * @return \Illuminate\Http\Response
+         */
 
     public function destroy($id)
     {
@@ -121,9 +123,16 @@ class AdminUserController extends Controller
 
     public function privileges($id)
     {
-        $user = AdminUser::where('privileges','1')->get($id);
+        $user = AdminUser::where('privileges', '1')->get($id);
         return view('adminUser/privileges', [
+            
+            
             'user'=> $user
         ]);
+    }
+
+    public function casa()
+    {
+        $x=$user;
     }
 }

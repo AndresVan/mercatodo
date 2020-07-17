@@ -111,7 +111,7 @@
                         <a href="https://www.placetopay.com/web/">PlaceToPay</a>
                         <a href="https://www.evertecinc.com/">Evertec</a>
                         <a href="https://fondosumanti.com/">Sumanti</a>
-                        <a href="http://127.0.0.1:8000/admin_users">Usuarios</a>
+                        <a href="http://127.0.0.1:8000/admin_users">Admin</a>
                     </div><p>
                 <h6>Aliados Patrocinadores</h6></p>
             </div>

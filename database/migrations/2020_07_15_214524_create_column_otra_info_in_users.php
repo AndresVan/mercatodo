@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateColumnCcInAdminUsers extends Migration
+class CreateColumnOtraInfoInUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateColumnCcInAdminUsers extends Migration
      */
     public function up()
     {
-        Schema::table('admin_users', function (Blueprint $table) {
-            $table->integer('cedula')->unique();
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('cedula')->unique()->nullable();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -25,7 +24,7 @@ class CreateColumnCcInAdminUsers extends Migration
      */
     public function down()
     {
-        Schema::table('admin_users', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }
