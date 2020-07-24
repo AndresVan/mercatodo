@@ -13,10 +13,10 @@ class CreateRoleUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('role_user', function (Blueprint $table) {
+        Schema::create('roles_user', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('role_id');
-            $table->foreign('role_id', 'fk_role_user_role')->references('id')->on('role')->OnDelete('restrict')->OnUpdate('restrict');
+            $table->foreign('role_id', 'fk_role_user_role')->references('id')->on('roles')->OnDelete('restrict')->OnUpdate('restrict');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id', 'fk_role_user_user')->references('id')->on('users')->OnDelete('restrict')->OnUpdate('restrict');
             $table->boolean('state');
@@ -31,6 +31,6 @@ class CreateRoleUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('role_user');
+        Schema::dropIfExists('roles_user');
     }
 }

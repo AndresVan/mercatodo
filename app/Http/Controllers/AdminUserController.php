@@ -125,14 +125,9 @@ class AdminUserController extends Controller
     {
         $user = AdminUser::where('privileges', '1')->get($id);
         return view('adminUser/privileges', [
-            
-            
+                        
             'user'=> $user
         ]);
     }
 
-    public function casa()
-    {
-        $x=$user;
-    }
 }
