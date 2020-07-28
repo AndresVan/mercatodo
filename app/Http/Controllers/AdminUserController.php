@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\AdminUser;
 use Illuminate\View\View;
 
-
-
 class AdminUserController extends Controller
 {
     public function __construct()
@@ -121,13 +119,4 @@ class AdminUserController extends Controller
         $user->delete();
         return redirect('admin_users');
     }
-
-   /*  public function privileges(int $id): View
-    {
-        $user = AdminUser::where('role', '1')->get($id);
-        return view('manage', [
-                'user'=> $user
-        ]);
-    } */
-
 }

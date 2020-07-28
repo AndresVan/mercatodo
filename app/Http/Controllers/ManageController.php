@@ -9,10 +9,9 @@ class ManageController extends Controller
 {
     public function __construct()
     {
-        
     }
     
-    public function index ()
+    public function index()
     {
         return view('/manageSelect');
     }
