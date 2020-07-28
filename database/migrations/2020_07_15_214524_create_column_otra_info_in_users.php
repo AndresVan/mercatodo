@@ -14,7 +14,8 @@ class CreateColumnOtraInfoInUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('cedula')->unique()->nullable();
+            $table->integer('ID_number')->unique()->nullable();
+            $table->integer('role')->nullable();
         });
     }
     /**

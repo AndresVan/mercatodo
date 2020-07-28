@@ -24,6 +24,6 @@ $factory->define(AdminUser::class, function (Faker $faker) {
         'email_verified_at' => now(),
         'password' => '0000', // password
         'remember_token' => Str::random(10),
-        'cedula' => $faker->randomNumber($nbDigits= 8)
+        'ID_number' => $faker->randomNumber($nbDigits= 8)
     ];
 });

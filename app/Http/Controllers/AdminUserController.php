@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\AdminUser;
 use Illuminate\View\View;
-use \Illuminate\Http\RedirectResponse;
+
+
 
 class AdminUserController extends Controller
 {
@@ -18,7 +19,7 @@ class AdminUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         return view('/adminUser/index', [
             'usuarios'=> AdminUser::all()
@@ -30,7 +31,7 @@ class AdminUserController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function create()
+    public function create(): View
     {
         return view('adminUser.create');
     }
@@ -51,7 +52,7 @@ class AdminUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id): View
     {
         $user = AdminUser::findOrFail($id);
 
@@ -66,7 +67,7 @@ class AdminUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id): View
     {
         $user = AdminUser::findOrFail($id);
 
@@ -82,7 +83,7 @@ class AdminUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $validaData = $request->validate([
             'name' => 'required|min:3|max:50',
@@ -114,20 +115,19 @@ class AdminUserController extends Controller
          * @return \Illuminate\Http\Response
          */
 
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $user = AdminUser::findOrFail($id);
         $user->delete();
         return redirect('admin_users');
     }
 
-    public function privileges($id)
+   /*  public function privileges(int $id): View
     {
-        $user = AdminUser::where('privileges', '1')->get($id);
-        return view('adminUser/privileges', [
-                        
-            'user'=> $user
+        $user = AdminUser::where('role', '1')->get($id);
+        return view('manage', [
+                'user'=> $user
         ]);
-    }
+    } */
 
 }

@@ -5,9 +5,9 @@
                 <div class="row">
                     <h1>Users</h1>
                 </div>
-                <div>
-                    <a class="btn btn-sm btn-dark" href="/">Back</a>
-                </div><tr>.</tr>
+                <div class="row">
+                    <a class="btn btn-sm btn-dark" href="/manage">Back</a>
+                </div><tr> </tr>
                     <table class="table">
                     <tr>
                     <td><strong>Id</strong></td>
@@ -20,7 +20,7 @@
                         <tr>
                             <td>{{$admin_User->id}}</td>
                             <td><a href="/admin_users/{{$admin_User->id}}">{{$admin_User->name}}</a></td>
-                            @if($admin_User->privileges==1)
+                            @if($admin_User->role==1)
                             <td>Admin</td>
                             @else
                             <td>User</td>
