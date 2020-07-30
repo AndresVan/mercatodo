@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AdminProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class AdminProductController extends Controller
@@ -15,8 +16,9 @@ class AdminProductController extends Controller
      */
     public function index(): View
     {
+        $product = AdminProduct::all();
         return view('adminProduct/index', [
-            'productos' => AdminProduct::all()
+            'productos' => $product
         ]);
     }
 
@@ -27,7 +29,11 @@ class AdminProductController extends Controller
      */
     public function create()
     {
-        return view('adminProduct.create');
+        return View('adminProduct.create');
+        /* $product = AdminProduct::all();
+        return view('adminProduct.create', [
+            'product' => $product 
+        ]); */
     }
 
     /**
@@ -38,7 +44,27 @@ class AdminProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validData = $request->validate(
+            [
+                'product_name' => 'required|min:3',
+                'price' => 'required|min:3',
+                'amount' => 'required|max:3',
+                'description' => 'required|min:3',
+            ],[
+                'product_name.required' => 'El campo no puede estar vacío',
+                'product_name.min' => 'El campo debe contener al menos 3 caracteres'
+            ]
+            );
+
+        $product = new AdminProduct();
+        $product->product_name = $request->get('product_name');
+        $product->price = $request->get('price');
+        $product->amount = $request->get('amount');
+        $product->photo = $request->get('photo');
+        $product->description = $request->get('description');
+        $product->save();
+        
+        return redirect('admin_products');
     }
 
     /**
@@ -49,7 +75,11 @@ class AdminProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = AdminProduct::findOrFail($id);
+
+        return view('/adminProduct/show', [
+            'product'=>$product
+        ]);
     }
 
     /**
@@ -81,8 +111,11 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        //
+        $product = AdminProduct::findOrFail($id);
+        $product -> delete();
+
+        return back();
     }
 }

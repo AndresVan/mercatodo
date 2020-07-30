@@ -29,9 +29,9 @@ class AdminUserController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function create(): View
+    public function create()
     {
-        return view('adminUser.create');
+        //
     }
 
     /**
