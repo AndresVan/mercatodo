@@ -1,10 +1,10 @@
 @extends('layouts.app') @section('content')
 <div class="content">
     <div class="row">
-        <h1>User Editing Id: {{$user->id}}</h1>
+        <h1>Product Editing Id: {{$product->id}}</h1>
     </div>
     <div class="row">
-        <a class="btn btn-sm  btn-dark" href="/admin_users">Back</a>
+        <a class="btn btn-sm  btn-dark" href="/admin_products">Back</a>
     </div>
 </div>
 <div class="row">
@@ -20,16 +20,28 @@
             </ul>
         </div>
         @endif
-        <form action="/admin_users/{{$user->id}}" method="post">
+        <form action="/admin_products/{{$product->id}}" method="post">
             @csrf @method('put')
             <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Type a name" value="{{old('name')}}">
+                <label for="product_name">Name:</label>
+                <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Type a product name" value="{{old('product_name', $product->product_name)}}">
             </div>
             <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="text" class="form-control" id="email" name="email" placeholder="Type an email" value="{{old('email')}}">
-            </div>
+                <label for="price">Price:</label>
+                    <input type="text" class="form-control" id="price" name="price" placeholder="Type a price" value="{{old('price', $product->price)}}">
+                </div>
+                <div class="form-group">
+                <label for="amount">Amount:</label>
+                    <input type="text" class="form-control" id="amount" name="amount" placeholder="Type a amount" value="{{old('amount', $product->amount)}}">
+                </div>
+                <div class="form-group">
+                <label for="description">Description:</label>
+                    <input type="text" class="form-control" id="description" name="description" placeholder="Type a description" value="{{old('description', $product->description)}}">
+                </div>
+                <div class="form-group">
+                <label for="image">Image:</label>
+                    <input type="file" class="form-control" id="image" name="image" placeholder="Type a image" value="{{old('image', $product->image)}}">
+                </div>
             <button class="btn btn-warning" type="submit">Edit</button>
         </form>
     </div>

@@ -9,6 +9,11 @@ use Illuminate\View\View;
 
 class AdminProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -27,13 +32,9 @@ class AdminProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         return View('adminProduct.create');
-        /* $product = AdminProduct::all();
-        return view('adminProduct.create', [
-            'product' => $product 
-        ]); */
     }
 
     /**
@@ -50,11 +51,12 @@ class AdminProductController extends Controller
                 'price' => 'required|min:3',
                 'amount' => 'required|max:3',
                 'description' => 'required|min:3',
-            ],[
+            ],
+            [
                 'product_name.required' => 'El campo no puede estar vacío',
                 'product_name.min' => 'El campo debe contener al menos 3 caracteres'
             ]
-            );
+        );
 
         $product = new AdminProduct();
         $product->product_name = $request->get('product_name');
@@ -63,6 +65,11 @@ class AdminProductController extends Controller
         $product->photo = $request->get('photo');
         $product->description = $request->get('description');
         $product->save();
+
+        if ($request->hasFile('photo'))
+        {
+            $product->photo = $request->file('photo')->store('uploads', 'public');
+        }
         
         return redirect('admin_products');
     }
@@ -88,9 +95,12 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id): View
     {
-        //
+        $product = AdminProduct::findOrFail($id);
+        return View('/adminProduct/edit', [
+            'product' => $product
+        ]);
     }
 
     /**
@@ -100,9 +110,36 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        //
+        $validData = $request->validate(
+            [
+                'product_name' => 'required|min:3',
+                'price' => 'required|min:3',
+                'amount' => 'required|max:3',
+                'description' => 'required|min:3',
+            ],
+            [
+                'product_name.required' => 'El campo no puede estar vacío',
+                'product_name.min' => 'El campo debe contener al menos 3 caracteres'
+            ]
+        );
+
+        $product = AdminProduct::findOrFail($id);
+        $product -> product_name = $request->get('product_name');
+        $product -> price = $request ->get('price');
+        $product -> amount = $request ->get('amount');
+        $product -> photo = $request ->get('photo');
+        $product -> description =$request->get('description');
+
+        if ($request->hasFile('photo'))
+        {
+            $product-> photo = $request->file('photo')->store('uploads', 'public');
+        }
+
+        $product -> save();
+
+        return redirect('/admin_products');
     }
 
     /**
@@ -111,11 +148,19 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public  function confirmDelete(int $id)
+    {
+        $product = AdminProduct::findOrFail($id);
+        return View('adminProduct.confirmDelete', [
+            'product' => $product
+        ]);
+    }
+    
+     public function destroy(int $id)
     {
         $product = AdminProduct::findOrFail($id);
         $product -> delete();
 
-        return back();
+        return redirect('admin_products');
     }
 }

@@ -24,11 +24,11 @@
             @csrf @method('put')
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Type a name" value="{{old('name')}}">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Type a name" value="{{old('name' , $user->name)}}">
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="text" class="form-control" id="email" name="email" placeholder="Type an email" value="{{old('email')}}">
+                <input type="text" class="form-control" id="email" name="email" placeholder="Type an email" value="{{old('email' , $user->email)}}">
             </div>
             <button class="btn btn-warning" type="submit">Edit</button>
         </form>

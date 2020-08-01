@@ -34,7 +34,10 @@
                     <label for="description">Description</label>
                     <input id="description" class="form-control" type="text" name="description">
                 </div>
-            
+                <div class="form-group">
+                <label for="photo">Image</label>
+                <input type="file" name="photo">
+                </div>
                 <button class="btn btn-warning" type="submit">Add</button>
             </form>
         </div>
