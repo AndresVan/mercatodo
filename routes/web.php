@@ -19,8 +19,6 @@ Route::get('/admin_users/{id}/confirmDelete', 'AdminUserController@confirmDelete
 
 Route::get('/admin_products/{id}/confirmDelete', 'AdminProductController@confirmDelete');
 
-Route::get('/admin_users/{id}/privileges', 'AdminUserController@privileges');
-
 Route::get('/products', 'HomeProductsController@indexProduct')->middleware('verified');
 
 Route::get('/manage', 'ManageController@index')->middleware('verified');
