@@ -18,9 +18,10 @@ class AdminUserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(): View
-    {
+    {   
+        $usuarios = AdminUser::paginate(8);
         return view('/adminUser/index', [
-            'usuarios'=> AdminUser::all()
+            'usuarios'=> $usuarios
         ]);
     }
   

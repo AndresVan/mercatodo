@@ -22,9 +22,13 @@ class HomeProductsController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function indexProduct()
+    public function indexProduct(Request $request)
     {
-        $product = AdminProduct::all();
+        $nameproduct = $request->get('searchProduct');
+       
+        
+        $product = AdminProduct::products($nameproduct)->paginate(3);       //products viene del Scope usado en el modelo AdminProduct
+       
         return view('productsCatalog/products', [
             'product'=> $product
         ]);

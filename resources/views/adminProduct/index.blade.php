@@ -50,6 +50,9 @@
         <td>No hay productos para mostrar</td>
         @endif
     </table>
+    <div class="card-footer">
+                    {{$productos->links()}}
+                </div>
 </div>
 </div>
 @endsection

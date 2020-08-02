@@ -21,7 +21,7 @@ class AdminProductController extends Controller
      */
     public function index(): View
     {
-        $product = AdminProduct::all();
+        $product = AdminProduct::paginate(7);
         return view('adminProduct/index', [
             'productos' => $product
         ]);
