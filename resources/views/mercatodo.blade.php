@@ -5,7 +5,7 @@
             MercaTodo
             <h2>Donde comprar Online es todo un placer!</h2>
             <div>
-                <a class="btn btn-success btn-outline-dark" href='http://127.0.0.1:8000/products'>Ver Productos</a>
+                <a class="btn btn-success btn-outline-dark" href='/products'>Ver Productos</a>
             </div>
         </div>
         <div class="links">

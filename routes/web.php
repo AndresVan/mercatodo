@@ -22,3 +22,5 @@ Route::get('/admin_products/{id}/confirmDelete', 'AdminProductController@confirm
 Route::get('/products', 'HomeProductsController@indexProduct')->middleware('verified');
 
 Route::get('/manage', 'ManageController@index')->middleware('verified');
+
+Route::get('/products/{id}/show', 'HomeProductsController@show');
