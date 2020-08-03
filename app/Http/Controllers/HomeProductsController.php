@@ -27,7 +27,7 @@ class HomeProductsController extends Controller
         $nameproduct = $request->get('searchProduct');
        
         
-        $product = AdminProduct::products($nameproduct)->paginate(3);       //products viene del Scope usado en el modelo AdminProduct
+        $product = AdminProduct::products($nameproduct)->paginate(6);       //products viene del Scope usado en el modelo AdminProduct
        
         return view('productsCatalog/products', [
             'product'=> $product

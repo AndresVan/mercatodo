@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -15,11 +16,13 @@ class DatabaseSeeder extends Seeder
         $this->truncateTables([
             'roles',
             'permissions',
-            'users'
+            'users',
+            'products'
         ]);
         $this->call(RoleTableSeeder::class);
         $this->call(PermissionTableSeeder::class);
         $this->call(UserTableSeed::class);
+        $this->call(ProductTableSeeder::class);
     }
 
     protected function truncateTables(array $tables)

@@ -39,8 +39,8 @@
                     <input type="text" class="form-control" id="description" name="description" placeholder="Type a description" value="{{old('description', $product->description)}}">
                 </div>
                 <div class="form-group">
-                <label for="image">Image:</label>
-                    <input type="file" class="form-control" id="image" name="image" placeholder="Type a image" value="{{old('image', $product->image)}}">
+                <label for="photo">Image:</label>
+                    <input type="file" class="form-control" id="photo" name="photo" placeholder="Type a image" value="{{old('photo', $product->photo)}}">
                 </div>
             <button class="btn btn-warning" type="submit">Edit</button>
         </form>

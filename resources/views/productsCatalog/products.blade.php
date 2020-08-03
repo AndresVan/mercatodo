@@ -19,8 +19,8 @@
                     @foreach($product as $catalog_product)
                     <div class="col-xs-10 col-sm-6 col-md-4">
                         <div class="card">
-                            <img src="https://www.muycomputer.com/wp-content/uploads/2018/09/gu%C3%ADa-de-compras-tarjetas-gr%C3%A1ficas-NVIDIA-y-AMD.jpg"
-                                alt="Product Image /storage/app/public/uploads/{{$catalog_product->photo}}" border="4" width="350"
+                            <img src="./storage/app/public/uploads/{{$catalog_product->photo}}/"
+                                alt="Product Image {{$catalog_product->photo}}" border="4" width="350"
                                 height="250">
                             <a href="/products/{{$catalog_product->id}}/show">
                                 <h5>{{$catalog_product->product_name}}</h5>

@@ -21,7 +21,7 @@ class AdminProductController extends Controller
      */
     public function index(): View
     {
-        $product = AdminProduct::paginate(7);
+        $product = AdminProduct::paginate(10);
         return view('adminProduct/index', [
             'productos' => $product
         ]);
@@ -64,14 +64,16 @@ class AdminProductController extends Controller
         $product->amount = $request->get('amount');
         $product->photo = $request->get('photo');
         $product->description = $request->get('description');
-        $product->save();
-
+       
         if ($request->hasFile('photo'))
         {
             $product->photo = $request->file('photo')->store('uploads', 'public');
         }
-        
+          
+        $product->save();
+
         return redirect('admin_products');
+        
     }
 
     /**
