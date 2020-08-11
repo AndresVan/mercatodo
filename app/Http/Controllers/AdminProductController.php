@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\AdminProduct;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class AdminProductController extends Controller
@@ -43,7 +42,7 @@ class AdminProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
         $validData = $request->validate(
             [
@@ -65,15 +64,13 @@ class AdminProductController extends Controller
         $product->photo = $request->get('photo');
         $product->description = $request->get('description');
        
-        if ($request->hasFile('photo'))
-        {
+        if ($request->hasFile('photo')) {
             $product->photo = $request->file('photo')->store('uploads', 'public');
         }
           
         $product->save();
 
         return redirect('admin_products');
-        
     }
 
     /**
@@ -82,7 +79,7 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id): View
     {
         $product = AdminProduct::findOrFail($id);
 
@@ -112,7 +109,7 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): \Illuminate\Http\RedirectResponse
     {
         $validData = $request->validate(
             [
@@ -134,8 +131,7 @@ class AdminProductController extends Controller
         $product -> photo = $request ->get('photo');
         $product -> description =$request->get('description');
 
-        if ($request->hasFile('photo'))
-        {
+        if ($request->hasFile('photo')) {
             $product-> photo = $request->file('photo')->store('uploads', 'public');
         }
 
@@ -150,15 +146,17 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public  function confirmDelete(int $id)
+    public function confirmDelete(int $id):View
     {
         $product = AdminProduct::findOrFail($id);
         return View('adminProduct.confirmDelete', [
             'product' => $product
         ]);
     }
-    
-     public function destroy(int $id)
+    /**
+     *
+     */
+    public function destroy(int $id):  \Illuminate\Http\RedirectResponse
     {
         $product = AdminProduct::findOrFail($id);
         $product -> delete();

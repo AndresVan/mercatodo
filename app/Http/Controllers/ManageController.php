@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View as ViewView;
 
 class ManageController extends Controller
 {
@@ -11,7 +10,7 @@ class ManageController extends Controller
     {
     }
     
-    public function index()
+    public function index(): ViewView
     {
         return view('/manageSelect');
     }

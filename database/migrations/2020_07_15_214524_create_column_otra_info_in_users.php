@@ -16,6 +16,7 @@ class CreateColumnOtraInfoInUsers extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->integer('ID_number')->unique()->nullable();
             $table->integer('role')->nullable();
+            $table->boolean('enabled')->TRUE;
         });
     }
     /**

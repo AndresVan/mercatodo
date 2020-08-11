@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AdminUser;
+use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +24,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(): \Illuminate\Contracts\Support\Renderable
     {
         return view('mercatodo');
     }

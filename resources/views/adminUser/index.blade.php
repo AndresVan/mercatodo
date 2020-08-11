@@ -41,7 +41,10 @@
                 <a class="btn btn-warning" href="/admin_users/{{$admin_User->id}}/edit">Edit</a>
             </td>
             <td>
-                <a class="btn btn-primary" href="/admin_users/{{$admin_User->id}}/privileges">Enable</a>
+                <form action="/admin_users/{{$admin_User->id}}" method="POST">
+                @csrf @method('put')
+                    <button class="btn btn-primary" type="submit">@isset($enable) {{$enable}} @else {{'Disable'}} @endisset</button>
+                </form>
             </td>
             <td>
                 <a class="btn btn-danger" href="/admin_users/{{$admin_User->id}}/confirmDelete">Delete</a>
@@ -50,8 +53,8 @@
         @endforeach
     </table>
     <div class="card-footer">
-                    {{$usuarios->links()}}
-                </div>
+        {{$usuarios->links()}}
+    </div>
 </div>
 </div>
 @endsection

@@ -1,7 +1,9 @@
 @extends ('layouts.app') @section ('content')
 <div class="content">
     <div class="row">
-        <h2><a href="products">Product Catalog</a></h2>
+        <h2>
+            <a href="products">Product Catalog</a>
+        </h2>
     </div>
 
     <nav class="navbar navbar-light bg-light ">
@@ -19,8 +21,7 @@
                     @foreach($product as $catalog_product)
                     <div class="col-xs-10 col-sm-6 col-md-4">
                         <div class="card">
-                            <img src="./storage/app/public/uploads/{{$catalog_product->photo}}/"
-                                alt="Product Image {{$catalog_product->photo}}" border="4" width="350"
+                            <img src="{{asset('uploads/'.$catalog_product->photo)}}" alt="Product Image {{$catalog_product->photo}}" border="4" width="350"
                                 height="250">
                             <a href="/products/{{$catalog_product->id}}/show">
                                 <h5>{{$catalog_product->product_name}}</h5>

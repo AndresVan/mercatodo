@@ -12,6 +12,8 @@ class UserTableSeed extends Seeder
      */
     public function run()
     {
-       factory(AdminUser ::class, 20)->create();
+        factory(AdminUser ::class, 20)->create([
+           'password' => bcrypt('0000')
+       ]);
     }
 }

@@ -18,10 +18,11 @@ class AdminUserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(): View
-    {   
+    {
         $usuarios = AdminUser::paginate(8);
         return view('/adminUser/index', [
-            'usuarios'=> $usuarios
+            'usuarios'=> $usuarios,
+            'enable' => 'Enable'
         ]);
     }
   
@@ -82,7 +83,7 @@ class AdminUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): \Illuminate\Http\RedirectResponse
     {
         $validaData = $request->validate([
             'name' => 'required|min:3|max:50',
@@ -114,7 +115,7 @@ class AdminUserController extends Controller
          * @return \Illuminate\Http\Response
          */
 
-    public function destroy(int $id)
+    public function destroy(int $id): \Illuminate\Http\RedirectResponse
     {
         $user = AdminUser::findOrFail($id);
         $user->delete();
